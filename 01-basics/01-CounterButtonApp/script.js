@@ -1,9 +1,9 @@
 import { createApp } from './vendor/vue.esm-browser.js';
 
-var app = createApp({
+let app = createApp({
   data() {
     return {
-      countClick: 0
-    }
-  }
-}).mount("#app");
+      countClick: 0,
+    };
+  },
+}).mount('#app');
