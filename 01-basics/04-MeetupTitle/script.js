@@ -14,20 +14,20 @@ function fetchMeetupById(meetupId) {
   });
 }
 
-var app = createApp({
+let app = createApp({
   data() {
     return {
       meetupId: 1,
-      meetupTitle: ""
+      meetupTitle: '',
     };
   },
 
   watch: {
     meetupId: {
       immediate: true,
-      handler(newMeetupId){
-        fetchMeetupById(newMeetupId).then( result => this.meetupTitle = result.title);
-      }
-    }
-  }
-}).mount("#app");
+      handler(newMeetupId) {
+        fetchMeetupById(newMeetupId).then((result) => (this.meetupTitle = result.title));
+      },
+    },
+  },
+}).mount('#app');

@@ -28,23 +28,23 @@ const emails = [
   'Isaias_Kuhic@jarrett.net',
 ];
 
-var app = createApp({
+let app = createApp({
   data() {
     return {
-      searchString: ""
-    }
+      searchString: '',
+    };
   },
 
   computed: {
     emails() {
-      var string = this.searchString;
-      
-      return emails.map(function(email) {
+      let string = this.searchString;
+
+      return emails.map(function (email) {
         return {
           email: email,
-          style: string == "" || email.indexOf(string) == -1 ? "" : "marked"
-        }
+          style: string == '' || email.indexOf(string) == -1 ? '' : 'marked',
+        };
       });
-    }
-  }
-}).mount("#app");
+    },
+  },
+}).mount('#app');
