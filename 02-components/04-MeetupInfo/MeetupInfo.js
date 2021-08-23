@@ -20,31 +20,32 @@ export default defineComponent({
   },
 
   computed: {
-    locale() {
-      return navigator.language || navigator.userLanguage;
-    },
     localeDate() {
-      return new Date(this.date).toLocaleDateString(this.locale, {
+      return new Date(this.date).toLocaleDateString(navigator.language, {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
       });
     },
+
+    localeDateTime() {
+      return new Date(this.date).toISOString().substr(0, 10);
+    }
   },
 
   template: `
     <ul class="meetup-info">
       <li>
         <img class="icon meetup-info__icon" alt="icon" src="/assets/icons/icon-user.svg" />
-        {{organizer}}
+        {{ organizer }}
       </li>
       <li>
         <img class="icon meetup-info__icon" alt="icon" src="/assets/icons/icon-map.svg" />
-        {{place}}
+        {{ place }}
       </li>
       <li>
         <img class="icon meetup-info__icon" alt="icon" src="/assets/icons/icon-cal-lg.svg" />
-        <time :datetime="new Date(date).toISOString().substr(0, 10)">{{localeDate}}</time>
+        <time :datetime="localeDateTime">{{ localeDate }}</time>
       </li>
     </ul>`,
 });

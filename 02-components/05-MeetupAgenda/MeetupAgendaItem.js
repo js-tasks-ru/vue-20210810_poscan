@@ -12,10 +12,9 @@ export default defineComponent({
 
   computed: {
     title() {
-      let title = this.agendaItem.title;
-      let defaultTitle = agendaItemDefaultTitles[title ? title : 'registration'];
-
-      return defaultTitle ? defaultTitle : title;
+      return this.agendaItem.title 
+          ? this.agendaItem.title 
+          : agendaItemDefaultTitles[this.agendaItem.type];
     },
 
     iconPath() {
@@ -29,15 +28,15 @@ export default defineComponent({
         <img 
           :src="iconPath" class="icon" :alt="title" />
       </div>
-      <div class="agenda-item__col">{{agendaItem.startsAt}} - {{agendaItem.endsAt}}</div>
+      <div class="agenda-item__col">{{ agendaItem.startsAt }} - {{ agendaItem.endsAt }}</div>
       <div class="agenda-item__col">
-        <h3 class="agenda-item__title">{{title}}</h3>
+        <h3 class="agenda-item__title">{{ title }}</h3>
         <p class="agenda-item__talk" v-if="agendaItem.type === 'talk'">
-          <span>{{agendaItem.speaker}}</span>
+          <span>{{ agendaItem.speaker }}</span>
           <span class="agenda-item__dot"></span>
-          <span class="agenda-item__lang">{{agendaItem.language}}</span>
+          <span class="agenda-item__lang">{{ agendaItem.language }}</span>
         </p>
-        <p v-if="agendaItem.type === 'talk'">{{agendaItem.description}}</p>
+        <p v-if="agendaItem.type === 'talk'">{{ agendaItem.description }}</p>
       </div>
     </div>`,
 });
