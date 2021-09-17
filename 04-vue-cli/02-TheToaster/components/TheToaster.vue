@@ -1,24 +1,53 @@
 <template>
   <div class="toasts">
-    <div class="toast toast_success">
-      <ui-icon class="toast__icon" icon="check-circle" />
-      <span>Success Toast Example</span>
-    </div>
-
-    <div class="toast toast_error">
-      <ui-icon class="toast__icon" icon="alert-circle" />
-      <span>Error Toast Example</span>
-    </div>
+    <ui-toast
+      v-for="toast in arrayToasts"
+      :key="toast.index"
+      :text="toast.text"
+      :iconToast="toast.icon"
+      :toastClass="toast.class"
+    />
   </div>
 </template>
 
 <script>
-import UiIcon from './UiIcon';
+import UiToast from './UiToast';
 
 export default {
   name: 'TheToaster',
 
-  components: { UiIcon },
+  components: { UiToast },
+
+  data() {
+    return {
+      arrayToasts: [],
+    };
+  },
+
+  methods: {
+    success(message) {
+      this.arrayToasts.push({
+        icon: 'check-circle',
+        class: 'toast_success',
+        text: message ? message : 'Success Toast Example',
+      });
+
+      setTimeout(() => {
+        this.arrayToasts.shift();
+      }, 5000);
+    },
+    error(message) {
+      this.arrayToasts.push({
+        icon: 'alert-circle',
+        class: 'toast_error',
+        text: message ? message : 'Error Toast Example',
+      });
+
+      setTimeout(() => {
+        this.arrayToasts.shift();
+      }, 5000);
+    },
+  },
 };
 </script>
 
